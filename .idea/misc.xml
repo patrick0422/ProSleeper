@@ -6,6 +6,9 @@
         <entry key="..\:/Coding/ProSleeper/app/src/main/res/drawable/ic_launcher_background.xml" value="0.285" />
         <entry key="..\:/Coding/ProSleeper/app/src/main/res/drawable/menu_bottom_item_color.xml" value="0.285" />
         <entry key="..\:/Coding/ProSleeper/app/src/main/res/layout/activity_main.xml" value="0.2759259259259259" />
+        <entry key="..\:/Coding/ProSleeper/app/src/main/res/layout/fragment_home.xml" value="0.37135416666666665" />
+        <entry key="..\:/Coding/ProSleeper/app/src/main/res/layout/fragment_settings.xml" value="0.37135416666666665" />
+        <entry key="..\:/Coding/ProSleeper/app/src/main/res/layout/fragment_statistics.xml" value="0.37135416666666665" />
         <entry key="..\:/Coding/ProSleeper/app/src/main/res/menu/menu_bottom_nav.xml" value="0.37135416666666665" />
       </map>
     </option>
