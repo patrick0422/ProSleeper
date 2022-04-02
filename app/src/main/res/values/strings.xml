@@ -3,4 +3,8 @@
     <string name="home">홈</string>
     <string name="statistics">통계</string>
     <string name="settings">설정</string>
+    <string name="allow_notification">알림 허용</string>
+    <string name="accept">확인</string>
+    <string name="cancel">취소</string>
+    <string name="set_notification_time">알림 시각 설정</string>
 </resources>
