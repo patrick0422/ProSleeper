@@ -14,6 +14,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     override fun init() {
         setUpBottomNavigationView()
+        supportActionBar?.hide()
     }
 
     private fun setUpBottomNavigationView() {
