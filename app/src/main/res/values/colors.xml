@@ -19,7 +19,8 @@
     <color name="ps_light">#3B3E96</color>
     <color name="ps_main">#36398A</color>
     <color name="ps_dark">#2C2E70</color>
-    <color name="ps_darker">#141533</color>
+    <color name="ps_darker">#23255A</color>
+    <color name="ps_darkest">#141533</color>
 
     <color name="yellow">#FFCD00</color>
     <color name="darkYellow">#947700</color>
