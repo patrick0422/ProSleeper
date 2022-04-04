@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Coding/Android/ProSleeper/app/src/main/res/layout/activity_main.xml" value="0.425" />
+        <entry key="..\:/Coding/Android/ProSleeper/app/src/main/res/layout/fragment_home.xml" value="0.4083333333333333" />
+        <entry key="..\:/Coding/Android/ProSleeper/app/src/main/res/layout/fragment_settings.xml" value="0.425" />
         <entry key="..\:/Coding/ProSleeper/app/src/main/res/drawable/dialog_time_picker.xml" value="0.227" />
         <entry key="..\:/Coding/ProSleeper/app/src/main/res/drawable/ic_launcher_background.xml" value="0.285" />
         <entry key="..\:/Coding/ProSleeper/app/src/main/res/drawable/menu_bottom_item_color.xml" value="0.285" />
