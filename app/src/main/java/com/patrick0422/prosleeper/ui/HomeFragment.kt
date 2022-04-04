@@ -4,6 +4,7 @@ import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import androidx.core.content.ContextCompat.getSystemService
+import com.airbnb.lottie.LottieAnimationView
 import com.patrick0422.prosleeper.R
 import com.patrick0422.prosleeper.base.BaseFragment
 import com.patrick0422.prosleeper.databinding.FragmentHomeBinding
@@ -17,7 +18,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     override fun init() = with(binding) {
         createNotificationChannel()
 
+        buttonWakeUp.setOnClickListener { onWakeUp() }
         floatingActionButton.setOnClickListener { makeNotification() }
+    }
+
+    private fun onWakeUp()  {
+        setLottieSrc()
+    }
+
+    private fun setLottieSrc() {
+        binding.buttonWakeUp.setAnimation(R.raw.check)
+        binding.buttonWakeUp.loop(false)
+        binding.buttonWakeUp.playAnimation()
     }
 
 

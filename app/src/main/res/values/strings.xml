@@ -7,4 +7,5 @@
     <string name="accept">확인</string>
     <string name="cancel">취소</string>
     <string name="set_notification_time">알림 시각 설정</string>
+    <string name="fab_description">Add Something</string>
 </resources>
