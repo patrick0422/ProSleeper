@@ -8,4 +8,8 @@
     <string name="cancel">취소</string>
     <string name="set_notification_time">알림 시각 설정</string>
     <string name="fab_description">Add Something</string>
+    <string name="notification_title">일어나셨나요?</string>
+    <string name="notification_content">저를 클릭해 기상 시각을 기록해 주세요!</string>
+    <string name="on_already_saved_message">오늘의 기상 시각이 이미 기록되어 있어요!</string>
+    <string name="on_wakeup_time_saved_message">오늘의 기상 시각이 기록되었어요!</string>
 </resources>
