@@ -16,6 +16,7 @@ import com.patrick0422.prosleeper.util.Constants.CHANNEL_DESCRIPTION
 import com.patrick0422.prosleeper.util.Constants.CHANNEL_ID
 import com.patrick0422.prosleeper.util.Constants.CHANNEL_NAME
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 @AndroidEntryPoint
@@ -26,7 +27,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     override fun init() = with(binding) {
         createNotificationChannel()
 
-
+        checkIsTodaysWakeUpTimeSaved()
 
         buttonWakeUp.setOnClickListener { onWakeUp() }
         floatingActionButton.setOnClickListener { makeNotification() }
@@ -53,9 +54,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         binding.buttonWakeUp.playAnimation()
     }
 
-    fun checkIsTodaysWakeUpTimeSaved() {
-        mainViewModel.getWakeUpTimes().asLiveData().observe(viewLifecycleOwner) {
-
+    private fun checkIsTodaysWakeUpTimeSaved() = mainViewModel.getWakeUpTimes().asLiveData().observe(viewLifecycleOwner) { result ->
+        if (result.map { it.wakeUpTime.dayOfMonth}.contains(LocalDate.now().dayOfMonth)) {
+            mainViewModel.isTodaysWakeUpTimeSaved = true
+            makeToast("오늘의 기상 기록이 있습니다.")
+        } else {
+            makeToast("XXXXXX")
         }
     }
 
