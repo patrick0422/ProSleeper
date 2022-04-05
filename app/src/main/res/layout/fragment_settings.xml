@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/ps_main"
-        tools:context=".ui.SettingsFragment">
+        tools:context=".ui.settings.SettingsFragment">
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="0dp"

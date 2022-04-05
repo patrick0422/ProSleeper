@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.patrick0422.prosleeper.ui.HomeFragment"
+        android:name="com.patrick0422.prosleeper.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/statisticsFragment"
-        android:name="com.patrick0422.prosleeper.ui.StatisticsFragment"
+        android:name="com.patrick0422.prosleeper.ui.statistics.StatisticsFragment"
         android:label="fragment_statistics"
         tools:layout="@layout/fragment_statistics" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.patrick0422.prosleeper.ui.SettingsFragment"
+        android:name="com.patrick0422.prosleeper.ui.settings.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>

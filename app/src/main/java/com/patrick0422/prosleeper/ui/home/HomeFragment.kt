@@ -1,4 +1,4 @@
-package com.patrick0422.prosleeper.ui
+package com.patrick0422.prosleeper.ui.home
 
 import android.app.Notification
 import android.app.NotificationChannel
@@ -11,6 +11,7 @@ import com.patrick0422.prosleeper.R
 import com.patrick0422.prosleeper.base.BaseFragment
 import com.patrick0422.prosleeper.data.local.WakeUpTimeEntity
 import com.patrick0422.prosleeper.databinding.FragmentHomeBinding
+import com.patrick0422.prosleeper.ui.MainViewModel
 import com.patrick0422.prosleeper.util.Constants.CHANNEL_DESCRIPTION
 import com.patrick0422.prosleeper.util.Constants.CHANNEL_ID
 import com.patrick0422.prosleeper.util.Constants.CHANNEL_NAME

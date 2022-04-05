@@ -1,4 +1,4 @@
-package com.patrick0422.prosleeper.ui
+package com.patrick0422.prosleeper.ui.settings
 
 import android.app.AlertDialog
 import android.view.LayoutInflater
