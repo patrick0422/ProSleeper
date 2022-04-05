@@ -57,9 +57,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private fun checkIsTodaysWakeUpTimeSaved() = mainViewModel.getWakeUpTimes().asLiveData().observe(viewLifecycleOwner) { result ->
         if (result.map { it.wakeUpTime.dayOfMonth}.contains(LocalDate.now().dayOfMonth)) {
             mainViewModel.isTodaysWakeUpTimeSaved = true
-            makeToast("오늘의 기상 기록이 있습니다.")
-        } else {
-            makeToast("XXXXXX")
+            applyLottieStyle()
         }
     }
 

@@ -12,7 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
-    private val mainViewModel: MainViewModel by viewModels()
+//    private val mainViewModel: MainViewModel by viewModels()
     private val navHostFragment by lazy { supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment }
     private val navController by lazy { navHostFragment.navController }
 
