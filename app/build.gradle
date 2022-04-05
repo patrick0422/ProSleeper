@@ -67,27 +67,18 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
+    // AAC
     def lifecycle_version = "2.5.0-alpha05"
-
-    // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-    // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
-
-    // Saved state module for ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
-
-    // Annotation processor
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
-
-    // viewModelScope
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-    // lifecycleScope
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
-    // livedata builder
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
-
-    // ViewModel 가져올 때 by viewModels() 사용 위해 필요
     implementation "androidx.activity:activity-ktx:1.4.0"
     implementation "androidx.fragment:fragment-ktx:1.4.1"
+
+    // MPAndroidChart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }
