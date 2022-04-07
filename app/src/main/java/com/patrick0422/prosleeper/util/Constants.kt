@@ -6,4 +6,7 @@ object Constants {
     const val CHANNEL_DESCRIPTION = "prosleeper_channel_description"
 
     const val DATABASE_NAME = "ProSleeperDatabase"
+    const val DATASTORE_NAME = "ProSleeperDataStore"
+    const val IS_NOTIFICATION_ALLOWED = "isNotificationAllowed"
+    const val NOTIFICATION_TIME = "NotificationTime"
 }
