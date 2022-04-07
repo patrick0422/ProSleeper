@@ -3,57 +3,69 @@ package com.patrick0422.prosleeper.ui.statistics
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.asLiveData
 import com.github.mikephil.charting.data.*
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.patrick0422.prosleeper.R
 import com.patrick0422.prosleeper.base.BaseFragment
 import com.patrick0422.prosleeper.data.local.WakeUpTimeEntity
 import com.patrick0422.prosleeper.databinding.FragmentStatisticsBinding
 import com.patrick0422.prosleeper.ui.MainViewModel
+import com.patrick0422.prosleeper.util.DateAxisValueFormatter
+import com.patrick0422.prosleeper.util.TimeAxisValueFormatter
+import java.time.LocalDateTime
 
 class StatisticsFragment : BaseFragment<FragmentStatisticsBinding>(R.layout.fragment_statistics) {
     private val mainViewModel: MainViewModel by activityViewModels()
-    private val entries = mutableListOf<Entry>()
 
     override fun init() = with(binding) {
-        getWakeUpTimes()
-        buttonTest.setOnClickListener { addItem() }
-        chart.invalidate()
+//        getWakeUpTimes()
+        getMockedWakeUpTimes()
+
+        buttonTest.setOnClickListener { getMockedWakeUpTimes() }
     }
 
     private fun getWakeUpTimes() {
         mainViewModel.getWakeUpTimes().asLiveData().observe(viewLifecycleOwner) { result ->
-//            setChart(result)
-            testChart()
+            setChart(result)
         }
     }
 
-    private fun addItem() {
-        entries.add(Entry(entries.size.toFloat(), (1..24).random().toFloat()))
-        binding.chart.apply {
-            data = LineData(LineDataSet(entries, "Test"))
-            invalidate()
-        }
-    }
+    private fun getMockedWakeUpTimes() {
+        val result = mutableListOf<WakeUpTimeEntity>()
 
-    private fun testChart() {
-        binding.chart.apply {
-            data = LineData(LineDataSet(entries, "Test"))
-            invalidate()
+        for (i in 1..10) {
+            result.add(WakeUpTimeEntity(LocalDateTime.of(2022, 4, i, 7, (20..40).random(), 39)).apply { id = i })
         }
+
+        setChart(result)
     }
 
     private fun setChart(result: List<WakeUpTimeEntity>) {
-        val entries = result.map {
-            Entry(it.id.toFloat(), it.wakeUpTime.minute.toFloat())
+        val wakeUpTimeList = result.map { wakeUpTimeEntity ->
+            Entry(
+                wakeUpTimeEntity.wakeUpTime.dayOfYear.toFloat(),
+                (wakeUpTimeEntity.wakeUpTime.hour * 60 + wakeUpTimeEntity.wakeUpTime.minute).toFloat()
+            )
         }.toMutableList()
 
-        val dataSet = LineDataSet(entries, "Test")
+        val dataSet = LineDataSet(wakeUpTimeList, "Wake-up Time").apply {
+            setDrawFilled(true)
+            fillColor = resources.getColor(R.color.yellow, null)
+            mode = LineDataSet.Mode.CUBIC_BEZIER
+        }
 
         binding.chart.apply {
-            xAxis.setDrawLabels(true)
-            xAxis.axisMinimum = 0f
-            xAxis.axisMaximum = 24f
-
+            description = null
+            xAxis.valueFormatter = DateAxisValueFormatter()
+            TimeAxisValueFormatter().let {
+                axisLeft.valueFormatter = it
+                axisRight.valueFormatter = it
+            }
+            axisLeft.apply {
+                val average = result.map {
+                    (it.wakeUpTime.hour * 60 + it.wakeUpTime.minute)
+                }.average()
+                axisMinimum = average.toFloat() - 50F
+                axisMaximum = average.toFloat() + 50F
+            }
             data = LineData(dataSet)
             invalidate()
         }
