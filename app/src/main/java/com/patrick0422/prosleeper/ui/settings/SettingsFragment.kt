@@ -20,7 +20,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(R.layout.fragment
         textNotificationTime.setOnClickListener {
             showTimePickerDialog()
         }
-        mainViewModel.notificaitonTime.observe(viewLifecycleOwner) { notificationTime ->
+        mainViewModel.notificationTime.observe(viewLifecycleOwner) { notificationTime ->
             textNotificationTime.text = notificationTime
         }
         switchAllowNotification.setOnCheckedChangeListener { _, isChecked ->
@@ -41,7 +41,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(R.layout.fragment
             .create()
 
         with(dialogTimePickerBinding) {
-            val savedTime = mainViewModel.notificaitonTime.value?.split(':') ?: listOf("7", "0")
+            val savedTime = mainViewModel.notificationTime.value?.split(':') ?: listOf("7", "0")
             timePicker.hour = savedTime[0].toInt()
             timePicker.minute = savedTime[1].toInt()
 
