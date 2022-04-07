@@ -41,6 +41,10 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(R.layout.fragment
             .create()
 
         with(dialogTimePickerBinding) {
+            val savedTime = mainViewModel.notificaitonTime.value?.split(':') ?: listOf("7", "0")
+            timePicker.hour = savedTime[0].toInt()
+            timePicker.minute = savedTime[1].toInt()
+
             textApply.setOnClickListener {
             saveNotificationTime(timePicker.hour, timePicker.minute)
                 alertDialog.dismiss()
