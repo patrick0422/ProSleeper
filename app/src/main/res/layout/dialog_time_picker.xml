@@ -50,6 +50,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="20dp"
                     android:timePickerMode="spinner"
+
                     app:layout_constraintBottom_toTopOf="@+id/textApply"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

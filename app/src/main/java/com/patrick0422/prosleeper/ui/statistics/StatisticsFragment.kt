@@ -50,20 +50,12 @@ class StatisticsFragment : BaseFragment<FragmentStatisticsBinding>(R.layout.frag
         val dataSet = LineDataSet(entries, "Test")
 
         binding.chart.apply {
-            xAxis.valueFormatter = DateAxisValueFormat()
             xAxis.setDrawLabels(true)
             xAxis.axisMinimum = 0f
             xAxis.axisMaximum = 24f
-            
 
             data = LineData(dataSet)
             invalidate()
         }
-    }
-}
-
-class DateAxisValueFormat: IndexAxisValueFormatter() {
-    override fun getFormattedValue(value: Float): String {
-        return super.getFormattedValue(value)
     }
 }

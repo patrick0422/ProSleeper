@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Coding/Android/ProSleeper/app/src/main/res/layout/activity_main.xml" value="0.425" />
+        <entry key="..\:/Coding/Android/ProSleeper/app/src/main/res/layout/dialog_time_picker.xml" value="0.425" />
         <entry key="..\:/Coding/Android/ProSleeper/app/src/main/res/layout/fragment_home.xml" value="0.4083333333333333" />
         <entry key="..\:/Coding/Android/ProSleeper/app/src/main/res/layout/fragment_settings.xml" value="0.425" />
         <entry key="..\:/Coding/Android/ProSleeper/app/src/main/res/layout/fragment_statistics.xml" value="0.375" />
