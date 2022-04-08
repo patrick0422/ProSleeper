@@ -28,11 +28,36 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="기상 시각"
-            android:textColor="@color/white"
-            android:textSize="24sp"
+            android:text="평균 기상 시각은"
+            android:textColor="@color/mediumGray"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@+id/textView"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/textAverageWakeUpTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="08:12"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/textView2"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:text="입니다."
+            android:textColor="@color/mediumGray"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textAverageWakeUpTime"
+            app:layout_constraintStart_toEndOf="@+id/textAverageWakeUpTime"
+            app:layout_constraintTop_toTopOf="@+id/textAverageWakeUpTime" />
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/chart"

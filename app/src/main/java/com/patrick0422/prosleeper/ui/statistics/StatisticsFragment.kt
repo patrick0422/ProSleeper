@@ -11,13 +11,14 @@ import com.patrick0422.prosleeper.ui.MainViewModel
 import com.patrick0422.prosleeper.util.DateAxisValueFormatter
 import com.patrick0422.prosleeper.util.TimeAxisValueFormatter
 import java.time.LocalDateTime
+import java.time.LocalTime
 
 class StatisticsFragment : BaseFragment<FragmentStatisticsBinding>(R.layout.fragment_statistics) {
     private val mainViewModel: MainViewModel by activityViewModels()
 
     override fun init() = with(binding) {
-//        getWakeUpTimes()
-        getMockedWakeUpTimes()
+        getWakeUpTimes()
+//        getMockedWakeUpTimes()
 
         buttonTest.setOnClickListener { getMockedWakeUpTimes() }
     }
@@ -63,8 +64,11 @@ class StatisticsFragment : BaseFragment<FragmentStatisticsBinding>(R.layout.frag
                 val average = result.map {
                     (it.wakeUpTime.hour * 60 + it.wakeUpTime.minute)
                 }.average()
-                axisMinimum = average.toFloat() - 50F
-                axisMaximum = average.toFloat() + 50F
+
+                binding.textAverageWakeUpTime.text = LocalTime.ofSecondOfDay((average * 60).toLong()).toString()
+
+//                axisMinimum = average.toFloat() - 50F
+//                axisMaximum = average.toFloat() + 50F
             }
             data = LineData(dataSet)
             invalidate()
