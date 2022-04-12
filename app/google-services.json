@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1019164033908",
+    "project_id": "prosleeper",
+    "storage_bucket": "prosleeper.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1019164033908:android:e760c80a1f0e9875a76221",
+        "android_client_info": {
+          "package_name": "com.patrick0422.prosleeper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1019164033908-a9at0jglpe7kv9h81kobbpjdcg4apavd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.patrick0422.prosleeper",
+            "certificate_hash": "621b1593b151fe787bc4ab1238884321a67a8188"
+          }
+        },
+        {
+          "client_id": "1019164033908-cfphkalmvo5enuoaqnamlhj0jjlu2595.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1-MY0q3kH6zXFJIEog1ZCDBj2XG5NC_M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1019164033908-cfphkalmvo5enuoaqnamlhj0jjlu2595.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
