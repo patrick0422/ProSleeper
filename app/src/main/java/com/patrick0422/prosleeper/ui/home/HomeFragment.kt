@@ -6,10 +6,12 @@ import android.app.NotificationManager
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.asLiveData
+import com.airbnb.lottie.LottieDrawable
 import com.google.android.material.snackbar.Snackbar
 import com.patrick0422.prosleeper.R
 import com.patrick0422.prosleeper.base.BaseFragment
 import com.patrick0422.prosleeper.data.local.WakeUpTimeEntity
+import com.patrick0422.prosleeper.data.local.WakeUpTimeTypeConverter
 import com.patrick0422.prosleeper.databinding.FragmentHomeBinding
 import com.patrick0422.prosleeper.ui.MainViewModel
 import com.patrick0422.prosleeper.util.Constants.CHANNEL_DESCRIPTION
@@ -50,7 +52,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     private fun applyLottieStyle() {
         binding.buttonWakeUp.setAnimation(R.raw.check)
-        binding.buttonWakeUp.loop(false)
+        binding.buttonWakeUp.repeatCount = 0
+        binding.buttonWakeUp.repeatMode = LottieDrawable.RESTART
         binding.buttonWakeUp.playAnimation()
     }
 
