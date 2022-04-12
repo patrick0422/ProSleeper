@@ -50,6 +50,7 @@ class StatisticsFragment : BaseFragment<FragmentStatisticsBinding>(R.layout.frag
             setDrawFilled(true)
             fillColor = resources.getColor(R.color.yellow, null)
             mode = LineDataSet.Mode.CUBIC_BEZIER
+            valueFormatter = TimeAxisValueFormatter()
         }
 
         binding.chart.apply {
