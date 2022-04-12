@@ -10,6 +10,8 @@ class WakeUpTimeTypeConverter {
     @TypeConverter
     fun localDateTimeToString(localDateTime: LocalDateTime): String =
         localDateTime.format(DateTimeFormatter.ofPattern(localDateTimePattern))
+
     @TypeConverter
-    fun stringToLocalDateTime(string: String): LocalDateTime = LocalDateTime.parse(string, DateTimeFormatter.ofPattern(localDateTimePattern))
+    fun stringToLocalDateTime(string: String): LocalDateTime =
+        LocalDateTime.parse(string, DateTimeFormatter.ofPattern(localDateTimePattern))
 }

@@ -8,9 +8,12 @@ import javax.inject.Inject
 class Repository @Inject constructor(
     private val wakeUpTimeDao: WakeUpTimeDao
 ) {
-    fun getWakeUpTimes(): Flow<List<WakeUpTimeEntity>> = wakeUpTimeDao.getWakeUpTimes()
+    fun getWakeUpTimes(): Flow<List<WakeUpTimeEntity>> =
+        wakeUpTimeDao.getWakeUpTimes()
 
-    suspend fun insertWakeUpTime(wakeUpTimeEntity: WakeUpTimeEntity) = wakeUpTimeDao.insertWakeUpTime(wakeUpTimeEntity)
+    suspend fun insertWakeUpTime(wakeUpTimeEntity: WakeUpTimeEntity) =
+        wakeUpTimeDao.insertWakeUpTime(wakeUpTimeEntity)
 
-    suspend fun deleteWakeUpTime(wakeUpTimeEntity: WakeUpTimeEntity) = wakeUpTimeDao.deleteWakeUpTime(wakeUpTimeEntity)
+    suspend fun deleteWakeUpTime(wakeUpTimeEntity: WakeUpTimeEntity) =
+        wakeUpTimeDao.deleteWakeUpTime(wakeUpTimeEntity)
 }

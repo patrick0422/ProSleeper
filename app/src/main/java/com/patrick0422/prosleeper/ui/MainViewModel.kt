@@ -30,7 +30,7 @@ class MainViewModel @Inject constructor(
         dataStoreRepository.saveNotificationTime(notificationTime)
     }
 
-    /** Remote */
+    /** Room */
 
     fun getWakeUpTimes(): Flow<List<WakeUpTimeEntity>> = repository.getWakeUpTimes()
 
