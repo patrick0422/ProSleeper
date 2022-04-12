@@ -18,9 +18,8 @@ class StatisticsFragment : BaseFragment<FragmentStatisticsBinding>(R.layout.frag
 
     override fun init() = with(binding) {
         getWakeUpTimes()
-//        getMockedWakeUpTimes()
 
-        buttonTest.setOnClickListener { getMockedWakeUpTimes() }
+        buttonTest.setOnClickListener { getTestWakeUpTimes() }
     }
 
     private fun getWakeUpTimes() {
@@ -29,7 +28,7 @@ class StatisticsFragment : BaseFragment<FragmentStatisticsBinding>(R.layout.frag
         }
     }
 
-    private fun getMockedWakeUpTimes() {
+    private fun getTestWakeUpTimes() {
         val result = mutableListOf<WakeUpTimeEntity>()
 
         for (i in 1..10) {
