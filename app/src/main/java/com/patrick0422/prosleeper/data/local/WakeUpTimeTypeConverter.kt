@@ -5,13 +5,15 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class WakeUpTimeTypeConverter {
-    private val localDateTimePattern = "yyyy-MM-dd HH:mm:ss"
+    companion object {
+        val DATETIME_FORMAT: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+    }
 
     @TypeConverter
     fun localDateTimeToString(localDateTime: LocalDateTime): String =
-        localDateTime.format(DateTimeFormatter.ofPattern(localDateTimePattern))
+        localDateTime.format(DATETIME_FORMAT)
 
     @TypeConverter
     fun stringToLocalDateTime(string: String): LocalDateTime =
-        LocalDateTime.parse(string, DateTimeFormatter.ofPattern(localDateTimePattern))
+        LocalDateTime.parse(string, DATETIME_FORMAT)
 }

@@ -16,7 +16,7 @@ class MainViewModel @Inject constructor(
     private val repository: Repository,
     private val dataStoreRepository: DataStoreRepository
 ) : ViewModel() {
-    var isTodaysWakeUpTimeSaved = false
+    var isTodaysWakeUpTimeSaved = true
 
     /** DataStore */
     val isNotificationAllowed = dataStoreRepository.readIsNotificationAllowed.asLiveData()

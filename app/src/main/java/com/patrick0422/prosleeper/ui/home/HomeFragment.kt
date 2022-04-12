@@ -20,6 +20,7 @@ import com.patrick0422.prosleeper.util.Constants.CHANNEL_NAME
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
@@ -58,10 +59,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     }
 
     private fun checkIsTodaysWakeUpTimeSaved() = mainViewModel.getWakeUpTimes().asLiveData().observe(viewLifecycleOwner) { result ->
-        if (result.map { it.wakeUpTime.dayOfMonth}.contains(LocalDate.now().dayOfMonth)) {
-            mainViewModel.isTodaysWakeUpTimeSaved = true
-            applyLottieStyle()
-        }
+        val dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        mainViewModel.isTodaysWakeUpTimeSaved = result.map { it.wakeUpTime.format(dateFormat) }.contains(LocalDate.now().format(dateFormat))
+        applyLottieStyle()
     }
 
     private fun makeSnackbar(id: Int) {
