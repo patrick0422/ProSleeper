@@ -52,10 +52,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     }
 
     private fun applyLottieStyle() {
-        binding.buttonWakeUp.setAnimation(R.raw.check)
-        binding.buttonWakeUp.repeatCount = 0
-        binding.buttonWakeUp.repeatMode = LottieDrawable.RESTART
-        binding.buttonWakeUp.playAnimation()
+        if (mainViewModel.isTodaysWakeUpTimeSaved) {
+            binding.buttonWakeUp.apply {
+                setAnimation(R.raw.check)
+                repeatCount = 0
+                repeatMode = LottieDrawable.RESTART
+                playAnimation()
+            }
+        }
     }
 
     private fun checkIsTodaysWakeUpTimeSaved() = mainViewModel.getWakeUpTimes().asLiveData().observe(viewLifecycleOwner) { result ->
