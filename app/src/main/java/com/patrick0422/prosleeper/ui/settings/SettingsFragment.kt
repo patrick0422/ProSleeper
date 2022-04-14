@@ -46,7 +46,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(R.layout.fragment
             timePicker.minute = savedTime[1].toInt()
 
             textApply.setOnClickListener {
-            saveNotificationTime(timePicker.hour, timePicker.minute)
+                saveNotificationTime(timePicker.hour, timePicker.minute)
                 alertDialog.dismiss()
             }
             textCancel.setOnClickListener { alertDialog.dismiss() }
