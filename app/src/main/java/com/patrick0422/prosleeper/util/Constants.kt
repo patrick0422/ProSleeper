@@ -11,4 +11,6 @@ object Constants {
     const val DATASTORE_NAME = "ProSleeperDataStore"
     const val IS_NOTIFICATION_ALLOWED = "isNotificationAllowed"
     const val NOTIFICATION_TIME = "NotificationTime"
+
+    const val ALARM_REQUEST_CODE = 20040422
 }
