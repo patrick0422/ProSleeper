@@ -13,12 +13,8 @@ import com.patrick0422.prosleeper.util.Constants.CHANNEL_ID
 
 class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
-
-        // 채널 생성
         createNotificationChannel(context)
-        // 알림
         notifyNotification(context)
-
     }
 
     private fun createNotificationChannel(context: Context) {

@@ -1,15 +1,20 @@
 package com.patrick0422.prosleeper.ui.settings
 
 import android.app.AlertDialog
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.asLiveData
 import com.patrick0422.prosleeper.R
 import com.patrick0422.prosleeper.base.BaseFragment
 import com.patrick0422.prosleeper.databinding.DialogTimePickerBinding
 import com.patrick0422.prosleeper.databinding.FragmentSettingsBinding
 import com.patrick0422.prosleeper.ui.MainViewModel
+import com.patrick0422.prosleeper.util.Constants.TAG
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.map
 import java.time.LocalTime
 
 @AndroidEntryPoint
@@ -20,14 +25,15 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(R.layout.fragment
         textNotificationTime.setOnClickListener {
             showTimePickerDialog()
         }
-        mainViewModel.notificationTime.observe(viewLifecycleOwner) { notificationTime ->
+        mainViewModel.notificationTime.asLiveData().observe(viewLifecycleOwner) { notificationTime ->
             textNotificationTime.text = notificationTime
         }
-        switchAllowNotification.setOnCheckedChangeListener { _, isChecked ->
-            mainViewModel.saveIsNotificationAllowed(isChecked)
-        }
-        mainViewModel.isNotificationAllowed.observe(viewLifecycleOwner) { isAllowed ->
+        mainViewModel.isNotificationAllowed.asLiveData().observe(viewLifecycleOwner) { isAllowed ->
             switchAllowNotification.isChecked = isAllowed
+        }
+        switchAllowNotification.setOnCheckedChangeListener { _, isChecked ->
+            Log.d(TAG, "init: isChecked = $isChecked")
+            mainViewModel.saveIsNotificationAllowed(isChecked)
         }
     }
 
@@ -41,9 +47,11 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(R.layout.fragment
             .create()
 
         with(dialogTimePickerBinding) {
-            val savedTime = mainViewModel.notificationTime.value?.split(':') ?: listOf("7", "0")
-            timePicker.hour = savedTime[0].toInt()
-            timePicker.minute = savedTime[1].toInt()
+            mainViewModel.notificationTime.asLiveData().observe(viewLifecycleOwner) {
+                val savedTime = it.split(':')
+                timePicker.hour = savedTime[0].toInt()
+                timePicker.minute = savedTime[1].toInt()
+            }
 
             textApply.setOnClickListener {
                 saveNotificationTime(timePicker.hour, timePicker.minute)

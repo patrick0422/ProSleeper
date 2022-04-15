@@ -19,8 +19,8 @@ class MainViewModel @Inject constructor(
     var isTodaysWakeUpTimeSaved = true
 
     /** DataStore */
-    val isNotificationAllowed = dataStoreRepository.readIsNotificationAllowed.asLiveData()
-    val notificationTime = dataStoreRepository.readNotificationTime.asLiveData()
+    val isNotificationAllowed = dataStoreRepository.readIsNotificationAllowed
+    val notificationTime = dataStoreRepository.readNotificationTime
 
     fun saveIsNotificationAllowed(isAllowed: Boolean) = viewModelScope.launch {
         dataStoreRepository.saveIsNotificationAllowed(isAllowed)
