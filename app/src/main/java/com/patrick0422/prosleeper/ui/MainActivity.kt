@@ -4,7 +4,9 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.activity.viewModels
+import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -14,8 +16,12 @@ import com.patrick0422.prosleeper.base.BaseActivity
 import com.patrick0422.prosleeper.databinding.ActivityMainBinding
 import com.patrick0422.prosleeper.util.AlarmReceiver
 import com.patrick0422.prosleeper.util.Constants.ALARM_REQUEST_CODE
+import com.patrick0422.prosleeper.util.Constants.TAG
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.LocalTime
+import java.time.ZoneId
 import java.util.*
 
 @AndroidEntryPoint
@@ -26,55 +32,55 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     override fun init() {
         setUpBottomNavigationView()
-        mainViewModel.isNotificationAllowed.observe(this) { setAlarm(it) }
+
+        mainViewModel.isNotificationAllowed.asLiveData().observe(this) { setAlarm(it) }
+
         supportActionBar?.hide()
     }
 
     private fun setAlarm(isEnabled: Boolean) {
+        Log.d(TAG, "setAlarm: Called, isEnabled = $isEnabled")
+        cancelAlarm()
         if (!isEnabled) {
-            cancelAlarm()
             return
         }
-        makeToast("Called")
 
-        val alarmManager =
-            applicationContext.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val alarmManager = applicationContext.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        mainViewModel.notificationTime.asLiveData().observe(this) {
+            val time = it.split(':')
 
-        val time = (mainViewModel.notificationTime.value?.split(':') ?: listOf("7", "0")).let {
-            return@let LocalTime.of(it[0].toInt(), it[1].toInt())
-        }
-
-        val timeInMills = Calendar.getInstance().apply {
-            set(Calendar.HOUR_OF_DAY, time.hour)
-            set(Calendar.MINUTE, time.minute)
-
-            if (before(Calendar.getInstance())) {
-                add(Calendar.DATE, 1)
+            val calendar = Calendar.getInstance().apply {
+                timeInMillis = System.currentTimeMillis()
+                set(Calendar.HOUR_OF_DAY, time[0].toInt())
+                set(Calendar.MINUTE, time[1].toInt())
             }
-        }.timeInMillis
+            Log.d(TAG, "setAlarm: ${calendar}")
 
-        val intent = Intent(this, AlarmManager::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(
-            this,
-            ALARM_REQUEST_CODE,
-            intent,
-            PendingIntent.FLAG_UPDATE_CURRENT
-        )
+            val pendingIntent = PendingIntent.getBroadcast(
+                this,
+                ALARM_REQUEST_CODE,
+                Intent(this, AlarmReceiver::class.java),
+                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+            )
 
-        alarmManager.setInexactRepeating(
-            AlarmManager.RTC_WAKEUP,
-            timeInMills,
-            AlarmManager.INTERVAL_DAY,
-            pendingIntent
-        )
+            alarmManager.setRepeating(
+                AlarmManager.RTC_WAKEUP,
+                calendar.timeInMillis,
+                AlarmManager.INTERVAL_DAY,
+                pendingIntent
+            )
+        }
     }
 
     private fun cancelAlarm() = PendingIntent.getBroadcast(
         this,
         ALARM_REQUEST_CODE,
         Intent(this, AlarmReceiver::class.java),
-        PendingIntent.FLAG_NO_CREATE
-    )?.cancel()
+        PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+    )?.let {
+        Log.d(TAG, "cancelAlarm: Called")
+        (applicationContext.getSystemService(Context.ALARM_SERVICE) as AlarmManager).cancel(it)
+    }
 
 
     private fun setUpBottomNavigationView() {
