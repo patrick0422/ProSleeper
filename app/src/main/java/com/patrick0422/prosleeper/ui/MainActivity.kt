@@ -54,7 +54,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 set(Calendar.HOUR_OF_DAY, time[0].toInt())
                 set(Calendar.MINUTE, time[1].toInt())
             }
-            Log.d(TAG, "setAlarm: ${calendar}")
+            Log.d(TAG, "setAlarm: ${calendar.get(Calendar.YEAR)}년 ${calendar.get(Calendar.MONTH) + 1}월 ${calendar.get(Calendar.DAY_OF_MONTH)}일 ${calendar.get(Calendar.HOUR_OF_DAY)}시 ${calendar.get(Calendar.MINUTE)}분")
 
             val pendingIntent = PendingIntent.getBroadcast(
                 this,
